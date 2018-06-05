@@ -1,0 +1,130 @@
+<html>
+<head>
+<script type="text/javascript" src="bower_components/web3/dist/web3.min.js"></script>
+<script type="text/javascript">
+  function testETH(){
+
+    console.log('starting...');
+    var Web3 = require('web3');
+    var web3 = new Web3();
+    web3.setProvider(new web3.providers.HttpProvider("http://localhost:8545"));
+//     console.log(web3.eth.contract([{
+// "type":"event",
+// "inputs": [{"name":"a","type":"uint256","indexed":true},{"name":"b","type":"bytes32","indexed":false}],
+// "name":"Event"
+// }, {
+// "type":"event",
+// "inputs": [{"name":"a","type":"uint256","indexed":true},{"name":"b","type":"bytes32","indexed":false}],
+// "name":"Event2"
+// }, {
+// "type":"function",
+// "inputs": [{"name":"a","type":"uint256"}],
+// "name":"foo",
+// "outputs": []
+// }]));
+    console.log(web3.eth.gasPrice);
+    var account = web3.eth.accounts[ 0 ];
+    var balance = web3.eth.getBalance(account);
+   // console.log(contract.address);
+    var send = web3.eth.sendTransaction({from:web3.web3.eth.coinbaseeth.coinbase,to:contract_address, value:web3.toWei(0.05, "ether")});
+console.log(send);
+    console.log('account: ' + account);
+    console.log('balance: ' + balance);
+    document.getElementById('account').innerText = account;
+    document.getElementById('balance').innerText = balance;
+        var btc_timestamp = priceFeedQuery(priceFeed.getTimestamp, "BTC_ETH");
+    var btc_eth = priceFeedQuery(priceFeed.getPrice, "BTC_ETH") / 1000000;
+    var usd_eth = priceFeedQuery(priceFeed.getPrice, "USDT_ETH") / 1000000;
+
+    console.log("");
+    console.log("Current price at " + new Date(btc_timestamp*1000).toString())
+    console.log("\t" + (btc_eth*1000) + " mBTC/ether")
+    console.log("\t$" + usd_eth + "/ether");
+    console.log("\t$" + (priceFeedQuery(priceFeed.getPrice, "USDT_BTC") / 1000000) + "/฿");
+    console.log("");
+
+    var i = 0;
+    var totalBtc = 0, totalDollar = 0, totalEther = 0;
+    web3.eth.accounts.forEach( function(e) {
+        var ether = parseFloat(web3.fromWei(web3.eth.getBalance(e), "ether"));
+        var btc = ether * btc_eth;
+        var dollar = ether * usd_eth;
+        totalBtc = totalBtc + btc;
+        totalDollar = totalDollar + dollar;
+        totalEther = totalEther + ether;
+        console.log("web3.eth.accounts["+i+"]: " +  e + ": " +
+            padString(prettyPrintEther(ether), 15) + ", " +
+            padString("฿" + trunc(btc, 3) + ", ", 12) +
+            "$" + trunc(dollar, 2)); 
+        i++;
+    })
+    console.log("");
+    console.log("Total: " +
+        padString(prettyPrintEther(totalEther), 69) + ", " +
+        padString("฿" + trunc(totalBtc, 6) + ", ", 12) +
+        "$" + trunc(totalDollar, 2))
+    console.log("");
+  }
+var priceFeedAbi = [
+{
+    "constant":true,
+    "inputs": [{"name":"symbol","type":"bytes32"}],
+    "name":"getPrice",
+    "outputs":[{"name":"currPrice","type":"uint256"}],
+    "type":"function"
+},
+{
+    "constant":true,"inputs":[{"name":"symbol","type":"bytes32"}],
+    "name":"getTimestamp",
+    "outputs":[{"name":"timestamp","type":"uint256"}],
+    "type":"function"
+}];
+
+var priceFeed = web3.eth.contract(priceFeedAbi).at(web3.eth.accounts[ 0 ]);
+
+function priceFeedQuery(fun, symbol) {
+    var cbValue;
+    var cb = function(name, type) {
+        cbValue = type;
+        return true;
+    }
+    fun.call(symbol, cb);
+    return parseInt(cbValue);
+}
+
+var trunc = function(number, precision) {
+    var shift = Math.pow(10, precision)
+    return parseInt(number * shift) / shift
+}
+
+function padString(str, len) {
+    while (str.length < len)
+        str = " " + str;
+    return str
+}
+
+function prettyPrintEther(ether) {
+    var str;
+    if (ether >= 1)
+        str = trunc(ether, 3) + "  ether";
+    else if (ether > 1e-5)
+        str = trunc(ether*1000, 3) + " finney";
+    else if (ether > 1e-7)
+        str = trunc(ether*1000, 6) + " finney";
+    else if (ether > 1e-12)
+        str = trunc(ether*1e12, 3) + "   gwei";
+    else
+        str = parseInt(web3.toWei(ether)) + "    wei";
+        
+    return str;
+}
+
+</script>
+</head>
+<body onload="testETH()">
+    <h1>My first Ethereum Webpage</h1>
+    Account:<div id="account"></div>
+    Balance:<div id="balance"></div>
+</body>
+</html>
+

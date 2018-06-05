@@ -1,0 +1,496 @@
+project silver gloom real pond aware rail abstract spy connect weasel measure
+
+shy elegant verb tragic source face duck valve nominee crash girl power
+
+visa monitor pride forest boil diagram title arm index wealth nose gown
+
+
+bulb monster symbol gorilla enemy whip poverty regular good average urban dose
+run matter wreck staff foot nasty crowd thank welcome senior atom near
+
+8a5dfb7f42007382a5215e5aaf3f22140f79a92350bc2adcd4a5230f9d2c41f8
+
+
+44487.191 POMDA
+
+
+	3.28283350573999998 Ether
+	11.00000000000000002 Ether
+	1000000000000000000
+
+	0xbcE0818346e27b7F6f459cF2B95e930E8BB533cd
+
+	[{
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "from",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "tokens",
+        "type": "uint256"
+      }
+    ],
+    "name": "Transfer",
+    "type": "event"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_referredBy",
+        "type": "address"
+      }
+    ],
+    "name": "buy",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": true,
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "customerAddress",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "ethereumWithdrawn",
+        "type": "uint256"
+      }
+    ],
+    "name": "onWithdraw",
+    "type": "event"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "exit",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "customerAddress",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "tokensBurned",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "ethereumEarned",
+        "type": "uint256"
+      }
+    ],
+    "name": "onTokenSell",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "customerAddress",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "ethereumReinvested",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "tokensMinted",
+        "type": "uint256"
+      }
+    ],		
+    "name": "onReinvestment",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "customerAddress",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "incomingEthereum",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "tokensMinted",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "referredBy",
+        "type": "address"
+      }
+    ],
+    "name": "onTokenPurchase",
+    "type": "event"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "reinvest",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_amountOfTokens",
+        "type": "uint256"
+      }
+    ],
+    "name": "sell",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_toAddress",
+        "type": "address"
+      },
+      {
+        "name": "_amountOfTokens",
+        "type": "uint256"
+      }
+    ],
+    "name": "transfer",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "withdraw",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "payable": true,
+    "stateMutability": "payable",
+    "type": "fallback"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_customerAddress",
+        "type": "address"
+      }
+    ],
+    "name": "balanceOf",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "buyPrice",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_tokensToSell",
+        "type": "uint256"
+      }
+    ],
+    "name": "calculateEthereumReceived",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_ethereumToSpend",
+        "type": "uint256"
+      }
+    ],
+    "name": "calculateTokensReceived",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "decimals",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_customerAddress",
+        "type": "address"
+      }
+    ],
+    "name": "dividendsOf",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_includeReferralBonus",
+        "type": "bool"
+      }
+    ],
+    "name": "myDividends",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "myTokens",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "name",
+    "outputs": [
+      {
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "sellPrice",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "stakingRequirement",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "symbol",
+    "outputs": [
+      {
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "totalEthereumBalance",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "totalSupply",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  }
+];
+
+
+
+0: uint256: 1321230078991953886
+myTokens
+0: uint256: 43987191846239079040900
+name
+0: string: pomda
+sellPrice
+0: uint256: 395955000000000
+stakingRequirement
+0: uint256: 100000000000000000000
+symbol
+0: string: POMDA
+totalEthereumBalance
+0: uint256: 11000000000000000020
+totalSupply
+0: uint256: 43987191846240401280900
+            43986791846240401280900
+
+
+
+            4280390608577199980
+
+            myTokens
+0: uint256: 43986791846239079040900
+name
+sellPrice
+stakingRequirement
+symbol
+totalEthereumBalance
+totalSupply
+0: uint256: 43986791846240401280900
+
+
+5596740250115335971
+
+4.34817918462390790409e+22
+
+4.39362918462404012809e+22
+var amountToSend = 2;
+var weiAmout = amountToSend * 1e18;
+var weiAmount2 = web3.toWei(amountToSend);
+
+0xbcE0818346e27b7F6f459cF2B95e930E8BB533cd
+	contract eth 9.656615999980058229 Ether
+	
+	0x4721eA599679FC85c15EB7b7841848e4A87751b2
+ETH Balance:	5.615473931497141771 Ether
+
+
+
+0xb3775fb83f7d12a36e0475abdd1fca35c091efbe(pow3d conrtract)
+

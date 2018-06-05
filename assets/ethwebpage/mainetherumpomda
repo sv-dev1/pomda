@@ -1,0 +1,193 @@
+<html>
+<head>
+<script type="text/javascript" src="bower_components/web3/dist/web3.min.js"></script>
+<script type="text/javascript">
+  window.addEventListener('load', function() {
+
+    console.log('starting...');
+      if(typeof web3 !== 'undefined') {
+                web3 = new Web3(web3.currentProvider);  
+
+            // Or connect to a node
+            } else {
+                web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+            }
+
+            // Check the connection
+            if(!web3.isConnected()) {
+                console.error("Not connected");
+
+            }
+                 web3.eth.getAccounts(function(error, accounts) {
+      if (!error) {
+        web3.eth.getBalance(accounts[0], function(error, balance) {
+          if (!error) {
+
+ //console.log('account: ' + accounts[0]);
+    //console.log('balance: ' + balance);
+   document.getElementById('account').innerText = accounts[0];
+    document.getElementById('balance').innerText = balance;
+     var priceFeedAbi = [{"constant":true,"inputs":[{"name":"_customerAddress","type":"address"}],"name":"dividendsOf","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_ethereumToSpend","type":"uint256"}],"name":"calculateTokensReceived","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_tokensToSell","type":"uint256"}],"name":"calculateEthereumReceived","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"onlyAmbassadors","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"bytes32"}],"name":"administrators","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"withdraw","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"sellPrice","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"pomda","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"stakingRequirement","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_includeReferralBonus","type":"bool"}],"name":"myDividends","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"totalEthereumBalance","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_customerAddress","type":"address"}],"name":"balanceOf","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_amountOfTokens","type":"uint256"}],"name":"setStakingRequirement","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"buyPrice","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_identifier","type":"bytes32"},{"name":"_status","type":"bool"}],"name":"setAdministrator","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"myTokens","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"disableInitialStage","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_toAddress","type":"address"},{"name":"_amountOfTokens","type":"uint256"}],"name":"transfer","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_symbol","type":"string"}],"name":"setSymbol","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_name","type":"string"}],"name":"setName","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_amountOfTokens","type":"uint256"}],"name":"sell","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"exit","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_referredBy","type":"address"}],"name":"buy","outputs":[{"name":"","type":"uint256"}],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[],"name":"reinvest","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"payable":true,"stateMutability":"payable","type":"fallback"},{"anonymous":false,"inputs":[{"indexed":true,"name":"customerAddress","type":"address"},{"indexed":false,"name":"incomingEthereum","type":"uint256"},{"indexed":false,"name":"tokensMinted","type":"uint256"},{"indexed":true,"name":"referredBy","type":"address"}],"name":"onTokenPurchase","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"customerAddress","type":"address"},{"indexed":false,"name":"tokensBurned","type":"uint256"},{"indexed":false,"name":"ethereumEarned","type":"uint256"}],"name":"onTokenSell","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"customerAddress","type":"address"},{"indexed":false,"name":"ethereumReinvested","type":"uint256"},{"indexed":false,"name":"tokensMinted","type":"uint256"}],"name":"onReinvestment","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"customerAddress","type":"address"},{"indexed":false,"name":"ethereumWithdrawn","type":"uint256"}],"name":"onWithdraw","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"tokens","type":"uint256"}],"name":"Transfer","type":"event"}];
+
+var priceFeed = web3.eth.contract(priceFeedAbi).at("0x4d48ee87ab535833fdd79c7d1c4aac3c7c304b13");
+startApp(web3);
+
+
+          } else {
+            console.error(error);
+          }
+        });
+      } else {
+        console.error(error);
+      }
+    });
+   
+  });
+
+function startApp(web3) {
+     var priceFeedAbi =[{"constant":true,"inputs":[{"name":"_customerAddress","type":"address"}],"name":"dividendsOf","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_ethereumToSpend","type":"uint256"}],"name":"calculateTokensReceived","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_tokensToSell","type":"uint256"}],"name":"calculateEthereumReceived","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"onlyAmbassadors","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"bytes32"}],"name":"administrators","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"withdraw","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"sellPrice","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"pomda","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"stakingRequirement","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_includeReferralBonus","type":"bool"}],"name":"myDividends","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"totalEthereumBalance","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_customerAddress","type":"address"}],"name":"balanceOf","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_amountOfTokens","type":"uint256"}],"name":"setStakingRequirement","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"buyPrice","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_identifier","type":"bytes32"},{"name":"_status","type":"bool"}],"name":"setAdministrator","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"myTokens","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"disableInitialStage","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_toAddress","type":"address"},{"name":"_amountOfTokens","type":"uint256"}],"name":"transfer","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_symbol","type":"string"}],"name":"setSymbol","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_name","type":"string"}],"name":"setName","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_amountOfTokens","type":"uint256"}],"name":"sell","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"exit","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_referredBy","type":"address"}],"name":"buy","outputs":[{"name":"","type":"uint256"}],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[],"name":"reinvest","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"payable":true,"stateMutability":"payable","type":"fallback"},{"anonymous":false,"inputs":[{"indexed":true,"name":"customerAddress","type":"address"},{"indexed":false,"name":"incomingEthereum","type":"uint256"},{"indexed":false,"name":"tokensMinted","type":"uint256"},{"indexed":true,"name":"referredBy","type":"address"}],"name":"onTokenPurchase","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"customerAddress","type":"address"},{"indexed":false,"name":"tokensBurned","type":"uint256"},{"indexed":false,"name":"ethereumEarned","type":"uint256"}],"name":"onTokenSell","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"customerAddress","type":"address"},{"indexed":false,"name":"ethereumReinvested","type":"uint256"},{"indexed":false,"name":"tokensMinted","type":"uint256"}],"name":"onReinvestment","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"customerAddress","type":"address"},{"indexed":false,"name":"ethereumWithdrawn","type":"uint256"}],"name":"onWithdraw","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"tokens","type":"uint256"}],"name":"Transfer","type":"event"}];
+  var web3 = new Web3(web3.currentProvider);  
+ var token = web3.eth.contract(priceFeedAbi).at("0x4d48ee87ab535833fdd79c7d1c4aac3c7c304b13");
+token.calculateEthereumReceived.call(120,{from:'0x4d48ee87ab535833fdd79c7d1c4aac3c7c304b13'},function(err, result) {
+  //ABI expects string here,
+  if(err) { console.log(err) }
+ console.log('calculateEthereumReceived:' +result);
+ //ocument.getElementById('symbol').innerText = symbol;
+})
+token.calculateTokensReceived.call(1.0,{from:'0x4d48ee87ab535833fdd79c7d1c4aac3c7c304b13'},function(err, result) {
+  //ABI expects string here,
+  if(err) { console.log(err) }
+ console.log('calculateTokensReceived:' +result.toString(10));
+ //ocument.getElementById('symbol').innerText = symbol;
+})
+
+token.totalEthereumBalance.call(function(err, result) {
+  //ABI expects string here,
+  if(err) { console.log(err) }
+ console.log('totalEthereumBalance:' +result);
+ //ocument.getElementById('symbol').innerText = symbol;
+})
+ //console.log(web3.eth.contract(priceFeedAbi));
+//console.log(web3.fromWei(100, 'ether'));
+token.symbol.call({from:'0x4d48ee87ab535833fdd79c7d1c4aac3c7c304b13'}, function(err, symbol) {
+  //ABI expects string here,
+  if(err) { console.log(err) }
+ // console.log('Token symbol: ' + symbol);
+ document.getElementById('symbol').innerText = symbol;
+})
+
+token.totalSupply.call({from: '0x4d48ee87ab535833fdd79c7d1c4aac3c7c304b13'}, function(err, totalSupply) {
+  //console.log(totalSupply)
+  document.getElementById('tokenname').innerText = totalSupply;
+
+})
+
+token.balanceOf.call('0x4d48ee87ab535833fdd79c7d1c4aac3c7c304b13', function (err, bal) {
+  if (err) { console.error(err) }
+  //console.log('balance is ' + bal.toString(10));
+document.getElementById('balance_of').innerText = bal.toString(10);
+
+});
+token.dividendsOf.call('0x4d48ee87ab535833fdd79c7d1c4aac3c7c304b13', function (err, bal) {
+  if (err) { console.error(err) }
+  console.log('dividendsOf is ' + bal.toString(10));
+//document.getElementById('dividendsOf').innerText = bal.toString(10);
+
+});
+token.sellPrice.call(function (err, bal) {
+  if (err) { console.error(err) }
+  console.log('sellPrice is ' + bal);
+//document.getElementById('dividendsOf').innerText = bal.toString(10);
+
+});
+token.buyPrice.call(function (err, bal) {
+  if (err) { console.error(err) }
+  console.log('buyPrice is ' + bal);
+//document.getElementById('dividendsOf').innerText = bal.toString(10);
+
+});
+
+ listenForClicks(token,web3)
+ //alert("llego");
+}
+function listenForClicks (miniToken, web3) {
+ var button = document.querySelector('button.transferFunds');
+ var ethamount = document.getElementById('ethamount').value;
+
+ web3.eth.getAccounts(function(err, accounts) { console.log(accounts); address = accounts.toString(); })
+ button.addEventListener('click', function() {
+// token.transfer.call(account[0],'100',{from: '0x6A8Af00598E99b5C789CF6DD45CD6aC4e84C934a'}, function(err, symbol) {
+//   //ABI expects string here,
+//   if(err) { console.log(err) }
+//   console.log('Token symbol: ' + symbol);
+
+// })
+//   miniToken.buy("0x4d48ee87ab535833fdd79c7d1c4aac3c7c304b13",{from:address ,to:"0x4d48ee87ab535833fdd79c7d1c4aac3c7c304b13", value: web3.toWei(0.00005,'ether')},function(err, hash1){
+//   //if (err) console.error(err)
+
+//   if (hash1) {
+//     //miniToken.buy.call(address,function(err,hash){
+//    // console.log('Transaction sent'); 
+//     console.dir(hash1);
+// //callWhenMined(hash); 
+//  // });
+//   }
+// //});
+// });
+  miniToken.transfer("0x4d48ee87ab535833fdd79c7d1c4aac3c7c304b13",1.0,function(err, hash1){
+  //if (err) console.error(err)
+
+  if (hash1) {
+    //miniToken.buy.call(address,function(err,hash){
+   // console.log('Transaction sent'); 
+    console.dir(hash1);
+//callWhenMined(hash); 
+ // });
+  }
+//});
+});
+
+
+//   miniToken.buy.sendTransaction(address,{from:address ,to:"0xc1C0082a6E0Acb122F2783BD749Ea7bEB3a34228", value: web3.toWei(1.0,'ether'),gas: 51000, gasPrice: web3.toWei(5,'gwei')},function(err, hash1){
+//   //if (err) console.error(err)
+
+//   if (hash1) {
+//     //miniToken.buy.call(address,function(err,hash){
+//    // console.log('Transaction sent'); 
+//     console.dir(hash1);
+// //callWhenMined(hash); 
+//  // });
+//   }
+// //});
+// });
+//       var event = miniToken.purchaseTokens(0.04,address,function(error, result) {
+//     if (!error)
+//         console.log(result);
+// });
+    
+
+// miniToken.events.onTokenPurchase({
+//     fromBlock: 0,
+//     toBlock: 'latest'
+// }, function(error, event){
+// console.log("event : ",event);
+// });
+
+
+});
+}
+
+</script>
+</head>
+<body >
+    <h1>Masternode </h1>
+<div id="account"></div>
+    Balance:<div id="balance"></div>
+    Symbol<div id="symbol"  ></div>
+    Contract Balance <div id="balance_of"></div>
+    TotalSupply<div id="tokenname" ></div>
+ <input type="text" name="value" id="ethamount">
+    <button class="transferFunds">Buy!</button>
+</body>
+</html>
+

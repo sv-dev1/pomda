@@ -1,0 +1,54 @@
+<script type="text/javascript" src="bower_components/web3/dist/web3.min.js"></script>
+<script type="text/javascript">
+window.addEventListener('load', function() {
+            // Load WEB3
+            // Check wether it's already injected by something else (like Metamask or Parity Chrome plugin)
+            if(typeof web3 !== 'undefined') {
+                web3 = new Web3(web3.currentProvider);  
+
+            // Or connect to a node
+            } else {
+                web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+            }
+
+            // Check the connection
+            if(!web3.isConnected()) {
+                console.error("Not connected");
+
+            }
+ 
+
+           web3.eth.getAccounts(function(error, accounts) {
+      if (!error) {
+        web3.eth.getBalance(accounts[0], function(error, balance) {
+          if (!error) {
+           document.getElementById('account').innerText = accounts[0];
+//console.log(contract.at("0x55e5ec0cd26837ab7052a9a0f365bd898bd8d991"));
+//var decimal = contract.decimals();
+//var balance = contract.balanceOf(accounts[0]);
+//var adjustedBalance = balance / Math.pow(10, decimal);
+//var tokenName = contract.name();
+//var tokenSymbol = contract.symbol();
+//var output =   tokenSymbol + " (" + tokenName + ")";
+//console.log(output);           
+ console.log(
+              "Your account: " +
+                accounts[0] +
+                " has a balance of: " +
+                balance.toNumber() / 1000000000000000000 +
+                "Ether"
+            );
+          } else {
+            console.error(error);
+          }
+        });
+      } else {
+        console.error(error);
+      }
+    });
+
+
+        });
+
+</script>
+Your masternode :<div id="account"></div>

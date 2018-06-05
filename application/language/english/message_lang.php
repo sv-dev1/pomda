@@ -1,0 +1,22 @@
+<?php
+$lang["Register"] = "Register";
+$lang["Login"] = "Login";
+$lang["join_us"] = "Join Us";
+$lang["token"] = "Token";
+$lang["buy_tokens"] = "Buy Tokens";
+$lang["whitepaper"] = "Whitepaper";
+$lang["ico_sale_is_open"] = "ICO SALE IS OPEN. CLOSING IN";
+$lang["pre_sale"] = "PRE SALE";
+$lang["soft_cap"] = "SOFT CAP";
+$lang["bonus"] = "BONUS";
+$lang["purchase_kick_now"] = "PURCHASE KICK NOW";
+$lang["Forgot password"] = "FORGOT PASSWORD";
+$lang["our_partners"] = "OUR PARTNERS";
+$lang["what_is_ico_crypto"] = "WHAT IS ICO CRYPTO";
+$lang["confirm"] = "I confirm that I have read, accepted and agreed to all";
+$lang["term_conditions"] = "Terms and Conditions";
+$lang["legal_age"] = "and I am of legal age";
+$lang["build_plateform"] = "We’ve built a platform to buy and sell shares.";
+$lang["plateform_for_the_future"] = "ICO Crypto is a platform for the future of funding that powering dat for the new equity blockchain.";
+$lang["existing_solutions"] = "While existing solutions offer to solve just one problem at a time, our team is up to build a secure, useful, & easy-to-use product based on private blockchain. It will include easy cryptocurrency payments integration, and even a digital arbitration system.";
+$lang["ecosystem"] = "At the end, Our aims to integrate all companies, employees, and business assets into a unified blockchain ecosystem, which will make business truly efficient, transparent, and reliable.";

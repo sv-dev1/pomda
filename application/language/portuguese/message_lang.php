@@ -1,0 +1,22 @@
+<?php
+$lang["Register"] = "registo";
+$lang["Login"] = "entrar";
+$lang["join_us"] = "Junte-se a nós";
+$lang["token"] = "símbolo";
+$lang["buy_tokens"] = "COMPRAR KICK";
+$lang["whitepaper"] = "Whitepaper";
+$lang["ico_sale_is_open"] = "A venda da ICO está aberta. Fechando Em";
+$lang["pre_sale"] = "Pré-Venda";
+$lang["soft_cap"] = "Tampão Macio";
+$lang["bonus"] = "Bônus";
+$lang["purchase_kick_now"] = "Compra KICK NOW";
+$lang["Forgot password"] = "Esqueceu a senha";
+$lang["our_partners"] = "NOSSO PARCEIROS";
+$lang["what_is_ico_crypto"] = "O QUE É ICO CRYPTO";
+$lang["confirm"] = "Confirmo que li, aceitei e concordei com todosl";
+$lang["term_conditions"] = "Termos e Condições";
+$lang["legal_age"] = "e eu sou maior de idade";
+$lang["build_plateform"] = "Nós construímos uma plataforma para comprar e vender ações.";
+$lang["plateform_for_the_future"] = "O ICO Crypto é uma plataforma para o futuro do financiamento que alimenta o dat para o novo blockchain de ações.";
+$lang["existing_solutions"] = "Embora as soluções existentes ofereçam apenas um problema por vez, nossa equipe está pronta para criar um produto seguro, útil e fácil de usar, baseado em blockchain privado. Incluirá fácil integração de pagamentos criptomoeda e até mesmo um sistema de arbitragem digital.";
+$lang["ecosystem"] = "No final, nosso objetivo é integrar todas as empresas, funcionários e ativos de negócios em um ecossistema blockchain unificado, o que tornará os negócios realmente eficientes, transparentes e confiáveis.";

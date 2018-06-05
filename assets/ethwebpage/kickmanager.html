@@ -1,0 +1,219 @@
+<html>
+<head>
+  <style>
+  .container{
+    margin:0px auto;
+    width:1000px;
+  }
+  </style>
+<script type="text/javascript" src="bower_components/web3/dist/web3.min.js"></script>
+<script type="text/javascript">
+  window.addEventListener('load', function() {
+
+    console.log('starting...');
+      if(typeof web3 !== 'undefined') {
+                web3 = new Web3(web3.currentProvider);  
+
+            // Or connect to a node
+            } else {
+                web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+            }
+
+            // Check the connection
+            if(!web3.isConnected()) {
+                console.error("Not connected");
+
+            }
+                 web3.eth.getAccounts(function(error, accounts) {
+      if (!error) {
+        web3.eth.getBalance(accounts[0], function(error, balance) {
+          if (!error) {
+
+ console.log('account: ' + accounts[0]);
+    console.log('balance: ' + balance);
+     document.getElementById('account').innerText = accounts[0];
+    document.getElementById('balance').innerText = balance;
+     var priceFeedAbi = [{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_spender","type":"address"},{"name":"_value","type":"uint256"}],"name":"approve","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_from","type":"address"},{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transferFrom","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"version","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_spender","type":"address"},{"name":"_value","type":"uint256"},{"name":"_extraData","type":"bytes"}],"name":"approveAndCall","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"},{"name":"_spender","type":"address"}],"name":"allowance","outputs":[{"name":"remaining","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"payable":false,"stateMutability":"nonpayable","type":"fallback"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_from","type":"address"},{"indexed":true,"name":"_to","type":"address"},{"indexed":false,"name":"_value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_owner","type":"address"},{"indexed":true,"name":"_spender","type":"address"},{"indexed":false,"name":"_value","type":"uint256"}],"name":"Approval","type":"event"}];
+
+     var tokenContract = web3.eth.contract(priceFeedAbi).at("0xc1C0082a6E0Acb122F2783BD749Ea7bEB3a34228");
+//    var decimal = tokenContract.decimals();
+//    var balance = tokenContract.balanceOf(address);
+// var adjustedBalance = balance / Math.pow(10, decimal);
+// var tokenName = tokenContract.name();
+// var tokenSymbol = tokenContract.symbol();
+tokenContract.name.call(function(err, name) {
+  if(err) { console.log(err) }
+  if(name) { console.log('The token name is: ' + name)
+ document.getElementById('tokenname').innerText = name;
+   }
+
+})
+
+// Get the token symbol
+tokenContract.symbol.call({from: accounts[0]}, function(err, symbol) {
+  //ABI expects string here,
+  if(err) { console.log(err) }
+  console.log('Token symbol: ' + symbol);
+ document.getElementById('symbol').innerText = symbol;
+})
+
+tokenContract.totalSupply.call({from: accounts[0]}, function(err, totalSupply) {
+  console.log(totalSupply)
+ document.getElementById('totalSupply').innerText =totalSupply;
+})
+
+tokenContract.balanceOf.call('0xc1C0082a6E0Acb122F2783BD749Ea7bEB3a34228', function (err, bal) {
+  if (err) { console.error(err) }
+  console.log('tokenbalance is ' + bal.toString(10));
+ document.getElementById('tokenbalance').innerText = bal.toString(10);
+
+});
+ listenForClicks(tokenContract,web3);
+
+}
+});
+}
+});
+});
+function listenForClicks(tokenContract,web3){
+   var button = document.querySelector('button.transferFunds');
+   var button1 = document.querySelector('button.transfertoken');
+   var gettokenbalance = document.querySelector('button.gettokenbalance');
+ web3.eth.getAccounts(function(err, accounts) { console.log(accounts); address = accounts.toString(); })
+ button.addEventListener('click', function() {
+  var amount1 =document.getElementById('value1').value;
+ var addressto1 =document.getElementById('addressto1').value;
+ console.log(addressto1);
+ console.log(amount1);
+  //var value = web3.fromWei(10,'ether'); // Base 10, accounts for decimals.
+// tokenContract.transfer(addressto,amount,{from :web3.eth.accounts[0]}, function (err, result) {
+//   if (err) console.error(err)
+
+//   if (result) {
+//     console.log('Transaction sent');
+//     console.dir(result);
+//   }
+// })
+//  tokenContract.approve(addressto,amount,function(err,result){
+   
+// if (err) console.error(err)
+
+//   if (result) {
+//     console.log('Transaction sent');
+//     console.dir(result);
+//   }
+web3.eth.sendTransaction({from:address , to: addressto1, value: web3.toWei(amount1,'ether'),gas: 21000, gasPrice: web3.toWei(2,'gwei')},function(err, hash){
+  if (err) console.error(err)
+
+  if (hash) {
+    console.log('Transaction sent');
+    console.dir(hash);
+callWhenMined(hash); 
+  }
+//});
+});
+
+});
+ button1.addEventListener('click', function() {
+ var amount =document.getElementById('value').value;
+ var addressto =document.getElementById('addressto').value;
+  tokenContract.transfer(addressto,amount, function (err, hash) {
+  if (err) console.error(err)
+
+  if (hash) {
+    console.log('Transaction sent');
+    console.dir(hash);
+//callWhenMined(hash); 
+  }
+//});
+});
+ });
+ gettokenbalance.addEventListener('click', function() {
+ var conadd =document.getElementById('conadd').value;
+ tokenContract.balanceOf.call(conadd, function (err, bal) {
+  if (err) { console.error(err) }
+ // console.log('tokenbalance is ' + bal.toString(10));
+ document.getElementById('contracadd').innerText = 'Token balance is :' + bal.toString(10);
+
+});
+ });
+}
+function callWhenMined(txHash) {
+                web3.eth.getTransactionReceipt(txHash, function(error, rcpt) {
+                    if(error) {
+                        console.error(error);
+                    } else {
+                        if(rcpt == null) {
+                            setTimeout(function() {
+                                callWhenMined(txHash);
+
+                            }, 500);
+                        } else {
+                          console.log(rcpt);
+                          if(rcpt['status']=='0x1'){
+                                document.getElementById('message').innerText='Sucessfully ';
+                                 document.getElementById('hash').innerText=txHash;
+                                 document.getElementById('message1').innerText='Sucessfully ';
+                                 document.getElementById('hash1').innerText=txHash;
+//                                  tokenContract.balanceOf.call('0xc1C0082a6E0Acb122F2783BD749Ea7bEB3a34228', function (err, bal) {
+//   if (err) { console.error(err) }
+//   console.log('tokenbalance is ' + bal.toString(10));
+//  document.getElementById('tokenbalance').innerText = bal.toString(10);
+
+// });
+
+                          }else{
+                            document.getElementById('message').innerText='Pending';
+                             document.getElementById('hash').innerText=txHash;
+                                document.getElementById('message1').innerText='Pending ';
+                                 document.getElementById('hash1').innerText=txHash;
+                          }
+                            //document.getElementById("transaktion").innerText = "";               
+                            //callback();
+                        }
+                    }
+                })
+            }
+</script>
+</head>
+<body >
+  <div class="container">
+  <table border="2" width="100%">
+<tr><td>Account</td> <td><div id="account" ></div></td></tr>
+<tr><td>Balance</td> <td><div id="balance" ></div></td></tr>
+<tr><td>Tokenname</td> <td><div id="tokenname"></div></td></tr>
+<tr><td>Tokensymbol</td> <td><div id="symbol"></div></td></tr>
+<tr><td>TokenBalance</td> <td><div id="tokenbalance"></div></td></tr>
+<tr><td>TokenSupply</td> <td><div id="totalSupply"></div></td></tr>
+</table>
+
+<br/>
+<br/>
+  Amount <input type="text" name="value" id="value1"> 
+  Payment Address  <input type="text" name="addressto" id="addressto1"> 
+<button class="transferFunds">Send eth</button>
+<div id="message"></div>
+<div id="hash"></div>
+<br/>
+<br/>
+<br/>
+  Tokens <input type="text" name="value" id="value"> 
+  Transfer To  <input type="text" name="addressto" id="addressto"> 
+<button class="transfertoken">Transfer Token</button>
+<div id="message1"></div>
+<div id="hash1"></div>
+<br/>
+<br/>
+Address <input type="text" placeholder="token address" id="conadd" required/> 
+
+<button class="gettokenbalance">Get token balance</button>
+<br/>
+<br/>
+<div id="contracadd"></div>
+</div> 
+
+</body>
+</html>
+
+
+
